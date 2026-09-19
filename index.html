@@ -571,13 +571,15 @@
             </div>
         </section>
 
-        <!-- 7. SEÇÃO CONTATO -->
+<!-- 7. SEÇÃO CONTATO -->
         <section id="contato" class="py-24 bg-white border-t border-slate-100 scroll-mt-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <!-- Left: Contact Details and Map -->
-                    <div class="space-y-8">
-                        <div class="space-y-4">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center text-center">
+                    <!-- Contact Details and Map -->
+                    <div class="space-y-12 w-full flex flex-col items-center">
+                        
+                        <!-- Header text -->
+                        <div class="space-y-4 flex flex-col items-center max-w-2xl">
                             <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-blue-50 px-4 py-1.5 rounded-full">Fale Conosco</span>
                             <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-none">
                                 Estamos prontos para te atender!
@@ -588,9 +590,9 @@
                         </div>
 
                         <!-- Contact Card list -->
-                        <div class="space-y-6">
+                        <div class="space-y-8 flex flex-col items-center w-full">
                             <!-- Address -->
-                            <div class="flex items-start space-x-4">
+                            <div class="flex flex-col items-center space-y-3">
                                 <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl flex-shrink-0">
                                     <i class="fa-solid fa-location-dot"></i>
                                 </div>
@@ -601,7 +603,7 @@
                             </div>
 
                             <!-- Phones -->
-                            <div class="flex items-start space-x-4">
+                            <div class="flex flex-col items-center space-y-3">
                                 <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl flex-shrink-0">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
@@ -612,7 +614,7 @@
                             </div>
 
                             <!-- Email -->
-                            <div class="flex items-start space-x-4">
+                            <div class="flex flex-col items-center space-y-3">
                                 <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl flex-shrink-0">
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
@@ -624,8 +626,7 @@
                         </div>
 
                         <!-- Embedded map placeholder -->
-                        <div class="rounded-2xl overflow-hidden border border-slate-200 h-64 shadow-inner relative bg-slate-100">
-                            <!-- Real maps dynamic iframe is preferred, but stylized placeholder works extremely robustly and safely online -->
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 h-64 shadow-inner relative bg-slate-100 w-full max-w-3xl">
                             <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
                                 <i class="fa-solid fa-map-location-dot text-4xl text-slate-400 mb-2"></i>
                                 <span class="font-bold text-slate-700 text-sm">Localização Central Próxima ao Metrô</span>
@@ -635,37 +636,6 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Right: Quick Contact Form / Lead Generation -->
-                    <div class="bg-slate-50 border border-slate-100 p-8 sm:p-10 rounded-3xl space-y-6 shadow-sm">
-                        <div class="space-y-2">
-                            <h3 class="text-2xl font-extrabold text-brand-navy">Envie uma Mensagem Direta</h3>
-                            <p class="text-slate-500 text-sm">Se você deseja que nossa equipe ligue diretamente para o seu telefone, informe abaixo.</p>
-                        </div>
-
-                        <form id="contact-form" class="space-y-5">
-                            <div>
-                                <label for="contact-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Seu Nome *</label>
-                                <input type="text" id="contact-name" required placeholder="Seu nome" 
-                                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm transition bg-white shadow-sm">
-                            </div>
-                            <div>
-                                <label for="contact-phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Telefone/WhatsApp *</label>
-                                <input type="tel" id="contact-phone" required placeholder="(99) 99999-9999" 
-                                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm transition bg-white shadow-sm">
-                            </div>
-                            <div>
-                                <label for="contact-msg" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Sua Mensagem / Dúvida</label>
-                                <textarea id="contact-msg" rows="4" placeholder="Como podemos te ajudar?" 
-                                          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm transition bg-white shadow-sm resize-none"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full py-4 bg-brand-navy hover:bg-slate-800 text-white font-bold text-sm rounded-xl shadow-md transition duration-200 uppercase tracking-wider flex items-center justify-center space-x-2">
-                                <span>Enviar Mensagem</span>
-                                <i class="fa-solid fa-chevron-right text-xs"></i>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
