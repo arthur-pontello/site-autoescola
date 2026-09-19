@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoescola Modelo - Sua CNH Rápido e Sem Burocracia</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',      /* Slate 900 */
+                            blue: '#1e3a8a',      /* Blue 900 */
+                            accent: '#f59e0b',    /* Amber 500 (CTA principal) */
+                            accentHover: '#d97706', /* Amber 600 */
+                            whatsapp: '#25d366',   /* WhatsApp Green */
+                            whatsappHover: '#128c7e'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para transições e interatividades */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar para uma experiência de UI premium */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- 1. HEADER (CABEÇALHO) -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center space-x-2 group">
+                    <div class="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+                        <i class="fa-solid fa-steering-wheel text-lg text-brand-accent"></i>
+                        <!-- Fallback se steering-wheel não carregar na versão free -->
+                        <i class="fa-solid fa-car text-lg text-brand-accent absolute"></i>
+                    </div>
+                    <span class="text-xl font-extrabold text-brand-navy tracking-tight">Autoescola <span class="text-brand-accent">Modelo</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#inicio" class="hover:text-brand-blue transition duration-200">Início</a>
+                    <a href="#servicos" class="hover:text-brand-blue transition duration-200">Serviços</a>
+                    <a href="#diferenciais" class="hover:text-brand-blue transition duration-200">Diferenciais</a>
+                    <a href="#depoimentos" class="hover:text-brand-blue transition duration-200">Depoimentos</a>
+                    <a href="#faq" class="hover:text-brand-blue transition duration-200">FAQ</a>
+                    <a href="#contato" class="hover:text-brand-blue transition duration-200">Contato</a>
+                </nav>
+
+                <!-- CTA Button (Desktop) -->
+                <div class="hidden lg:flex">
+                    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+planos+de+CNH+da+Autoescola+Modelo." 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-white bg-brand-whatsapp hover:bg-brand-whatsappHover font-bold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200 space-x-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Fale no WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Hamburger Button (Mobile) -->
+                <button id="mobile-menu-btn" aria-label="Menu de Navegação" class="md:hidden flex items-center p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition focus:outline-none">
+                    <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 absolute top-20 left-0 w-full shadow-lg transition-all duration-300">
+            <div class="px-4 pt-4 pb-6 space-y-3 flex flex-col">
+                <a href="#inicio" class="mobile-nav-link text-slate-700 font-medium py-2 hover:text-brand-blue border-b border-slate-50">Início</a>
+                <a href="#servicos" class="mobile-nav-link text-slate-700 font-medium py-2 hover:text-brand-blue border-b border-slate-50">Serviços</a>
+                <a href="#diferenciais" class="mobile-nav-link text-slate-700 font-medium py-2 hover:text-brand-blue border-b border-slate-50">Diferenciais</a>
+                <a href="#depoimentos" class="mobile-nav-link text-slate-700 font-medium py-2 hover:text-brand-blue border-b border-slate-50">Depoimentos</a>
+                <a href="#faq" class="mobile-nav-link text-slate-700 font-medium py-2 hover:text-brand-blue border-b border-slate-50">FAQ</a>
+                <a href="#contato" class="mobile-nav-link text-slate-700 font-medium py-2 hover:text-brand-blue">Contato</a>
+                
+                <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+planos+de+CNH+da+Autoescola+Modelo." 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl text-white bg-brand-whatsapp hover:bg-brand-whatsappHover font-bold text-center shadow-md space-x-2 mt-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Fale no WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. HERO SECTION -->
+        <section id="inicio" class="relative bg-slate-900 text-white overflow-hidden py-24 lg:py-32 flex items-center min-h-[85vh]">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1920&q=80" 
+                     alt="Pessoa dirigindo carro com as mãos no volante" 
+                     class="w-full h-full object-cover object-center opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/95 to-slate-900/70"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left Copy (Conversion Driven) -->
+                    <div class="lg:col-span-7 space-y-8 fade-in">
+                        <!-- Badge -->
+                        <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-brand-accent/20 text-brand-accent border border-brand-accent/30 tracking-wider uppercase">
+                            <i class="fa-solid fa-star mr-1.5 animate-pulse"></i> Líder em aprovação no DETRAN
+                        </span>
+                        
+                        <!-- Heading -->
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-none">
+                            Sua independência começa aqui. Tire sua <span class="text-brand-accent underline decoration-brand-accent/30 underline-offset-8">CNH rápido</span> e sem burocracia.
+                        </h1>
+
+                        <!-- Subtitle -->
+                        <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
+                            Esqueça processos complicados e aulas exaustivas. Aprenda com uma metodologia moderna de ensino, instrutores pacientes e conquiste sua habilitação com total segurança e suporte.
+                        </p>
+
+                        <!-- USPs bullet points -->
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-200">
+                            <li class="flex items-center space-x-2.5">
+                                <span class="flex-shrink-0 w-6 h-6 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </span>
+                                <span class="font-medium text-sm sm:text-base">Aulas teóricas online flexíveis</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <span class="flex-shrink-0 w-6 h-6 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </span>
+                                <span class="font-medium text-sm sm:text-base">Frota 100% nova com ar e direção</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <span class="flex-shrink-0 w-6 h-6 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </span>
+                                <span class="font-medium text-sm sm:text-base">Instrutores altamente calmos</span>
+                            </li>
+                            <li class="flex items-center space-x-2.5">
+                                <span class="flex-shrink-0 w-6 h-6 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </span>
+                                <span class="font-medium text-sm sm:text-base">Parcelamento facilitado sem juros</span>
+                            </li>
+                        </ul>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                            <a href="#contato" class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent hover:bg-brand-accentHover text-brand-navy font-extrabold text-base rounded-xl shadow-lg hover:shadow-brand-accent/20 transition-all duration-300 hover:-translate-y-0.5 space-x-2">
+                                <span>Quero tirar minha CNH</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Hero Image) -->
+                    <div class="lg:col-span-5 relative fade-in">
+                        <!-- Outer Decorative Glow -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-accent to-blue-600 rounded-2xl blur opacity-25"></div>
+                        
+                        <div class="relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="./imagens/pessoa-dirigindo.avif" 
+                                 alt="Nova motorista habilitada segurando sua CNH e sorrindo de felicidade dentro do carro" 
+                                 class="w-full h-auto object-cover rounded-2xl max-h-[350px] sm:max-h-[450px] lg:max-h-[500px]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. NOSSOS SERVIÇOS -->
+        <section id="servicos" class="py-24 bg-white scroll-mt-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-blue-50 px-4 py-1.5 rounded-full">O Que Fazemos</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+                        Serviços Completos para a sua Habilitação
+                    </h2>
+                    <p class="text-slate-600 text-base sm:text-lg">
+                        Oferecemos soluções sob medida tanto para quem está tirando a carteira pela primeira vez quanto para quem quer atualizar ou aprimorar sua condução.
+                    </p>
+                </div>
+
+                <!-- Services Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card 1: 1ª Habilitação -->
+                    <article class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-brand-accent/20 hover:bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-5">
+                            <div class="w-14 h-14 bg-brand-blue text-white rounded-xl flex items-center justify-center text-2xl shadow-md group-hover:bg-brand-accent group-hover:text-brand-navy transition duration-300">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-navy">1ª Habilitação</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Seu primeiro passo para a liberdade de ir e vir. Processo rápido de carro (B) e/ou moto (A) com suporte total e simulado prévio.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between text-brand-blue font-bold text-sm group-hover:text-brand-accent transition duration-300">
+                            <a href="#contato" class="flex items-center space-x-2">
+                                <span>Ver planos e preços</span>
+                                <i class="fa-solid fa-arrow-right-long text-xs group-hover:translate-x-1 transition duration-200"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 2: Adição/Mudança de Categoria -->
+                    <article class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-brand-accent/20 hover:bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-5">
+                            <div class="w-14 h-14 bg-brand-blue text-white rounded-xl flex items-center justify-center text-2xl shadow-md group-hover:bg-brand-accent group-hover:text-brand-navy transition duration-300">
+                                <i class="fa-solid fa-truck"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-navy">Adição / Mudança</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Adicione categoria A (moto) ou mude para as categorias profissionais C, D ou E para expandir sua empregabilidade e abrir novas portas.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between text-brand-blue font-bold text-sm group-hover:text-brand-accent transition duration-300">
+                            <a href="#contato" class="flex items-center space-x-2">
+                                <span>Aumentar categoria</span>
+                                <i class="fa-solid fa-arrow-right-long text-xs group-hover:translate-x-1 transition duration-200"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 3: Aulas para Habilitados -->
+                    <article class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-brand-accent/20 hover:bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-5">
+                            <div class="w-14 h-14 bg-brand-blue text-white rounded-xl flex items-center justify-center text-2xl shadow-md group-hover:bg-brand-accent group-hover:text-brand-navy transition duration-300">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-navy">Aulas para Habilitados</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Perca de vez o medo de dirigir em rodovias ou avenidas movimentadas. Treinamento exclusivo e paciência extrema para desenvolver sua autoconfiança.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between text-brand-blue font-bold text-sm group-hover:text-brand-accent transition duration-300">
+                            <a href="#contato" class="flex items-center space-x-2">
+                                <span>Perder o medo agora</span>
+                                <i class="fa-solid fa-arrow-right-long text-xs group-hover:translate-x-1 transition duration-200"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 4: Renovação de CNH -->
+                    <article class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-brand-accent/20 hover:bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+                        <div class="space-y-5">
+                            <div class="w-14 h-14 bg-brand-blue text-white rounded-xl flex items-center justify-center text-2xl shadow-md group-hover:bg-brand-accent group-hover:text-brand-navy transition duration-300">
+                                <i class="fa-solid fa-rotate"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-navy">Renovação Simplificada</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Evite filas e complicações. Nós auxiliamos você na emissão das taxas, agendamento de exames médicos e psicotécnicos de forma expressa.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between text-brand-blue font-bold text-sm group-hover:text-brand-accent transition duration-300">
+                            <a href="#contato" class="flex items-center space-x-2">
+                                <span>Renovar rápido</span>
+                                <i class="fa-solid fa-arrow-right-long text-xs group-hover:translate-x-1 transition duration-200"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. DIFERENCIAIS (POR QUE NOS ESCOLHER) -->
+        <section id="diferenciais" class="py-24 bg-slate-50 border-y border-slate-100 scroll-mt-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Grid: Intro Text on Left, 4 Differentials Grid on Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <!-- Left Copy -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-blue-100/60 px-4 py-1.5 rounded-full">Por Que Escolher a Modelo</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+                            Uma infraestrutura projetada para a sua melhor preparação.
+                        </h2>
+                        
+                        <!-- Imagem de Destaque -->
+                        <div class="flex justify-center">
+                            <img src="https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Pessoa sorrindo e dirigindo com segurança" 
+                                 class="rounded-2xl shadow-lg w-full object-cover h-64 object-center">
+                        </div>
+
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            Buscamos incansavelmente ser o ambiente de aprendizado de trânsito mais acolhedor, moderno e eficiente de nossa região. Unimos tecnologia e empatia para acelerar seu processo.
+                        </p>
+                        <div class="pt-4">
+                            <a href="#contato" class="inline-flex items-center space-x-2 text-brand-blue hover:text-brand-accent font-extrabold text-base transition duration-200">
+                                <span>Fale conosco hoje mesmo</span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Grid -->
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <!-- Differential 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                            <div class="w-12 h-12 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-trophy text-brand-blue"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-navy">Alta Taxa de Aprovação</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Com foco nos pontos exatos cobrados nas avaliações do DETRAN, garantimos que você vá para a prova prática extremamente preparado(a).
+                            </p>
+                        </div>
+
+                        <!-- Differential 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                            <div class="w-12 h-12 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-car-side text-brand-blue"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-navy">Frota Moderna e Nova</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Veículos novos equipados com ar-condicionado, direção hidráulica e ajustes de banco confortáveis, oferecendo excelente dirigibilidade.
+                            </p>
+                        </div>
+
+                        <!-- Differential 3 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                            <div class="w-12 h-12 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-display text-brand-blue"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-navy">Aulas Teóricas Online</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Assista às suas aulas teóricas obrigatórias de onde você preferir! Plataforma homologada, intuitiva e compatível com smartphone.
+                            </p>
+                        </div>
+
+                        <!-- Differential 4 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                            <div class="w-12 h-12 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-heart-pulse text-brand-blue"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-navy">Instrutores Pacientes</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Profissionais dedicados, didáticos e extremamente pacientes, treinados em psicologia do trânsito para acolher suas dúvidas e medos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PROVA SOCIAL (DEPOIMENTOS) -->
+        <section id="depoimentos" class="py-24 bg-white scroll-mt-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-blue-50 px-4 py-1.5 rounded-full">Histórias de Sucesso</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+                        Quem Aprendeu com a Gente, Recomenda!
+                    </h2>
+                    <p class="text-slate-600 text-base sm:text-lg">
+                        Confira os relatos de ex-alunos que superaram medos, conquistaram a CNH de primeira e hoje desfrutam da sua total liberdade de dirigir.
+                    </p>
+                </div>
+
+                <!-- Testimonials Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <article class="bg-slate-50 border border-slate-100 rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-300">
+                        <div class="space-y-4">
+                            <!-- Star Rating -->
+                            <div class="flex text-amber-400 space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <!-- Comment -->
+                            <p class="text-slate-600 text-sm leading-relaxed italic">
+                                "Eu tinha pânico só de sentar no banco do motorista devido a um trauma antigo. O instrutor Júlio foi incrivelmente paciente, usou técnicas excelentes para me acalmar e hoje vou trabalhar de carro todo dia. Melhores profissionais da cidade!"
+                            </p>
+                        </div>
+                        <!-- Author Meta -->
+                        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" 
+                                 alt="Foto de Mariana Silva" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-brand-navy text-sm">Mariana Silva</h4>
+                                <span class="inline-flex items-center text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full mt-1">
+                                    <i class="fa-solid fa-circle-check text-[10px] mr-1"></i> Aprovada de 1ª - Categoria B
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Testimonial 2 -->
+                    <article class="bg-slate-50 border border-slate-100 rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-300">
+                        <div class="space-y-4">
+                            <!-- Star Rating -->
+                            <div class="flex text-amber-400 space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <!-- Comment -->
+                            <p class="text-slate-600 text-sm leading-relaxed italic">
+                                "Excelente atendimento desde a recepção na matrícula. O agendamento das aulas teóricas online foi super simples e o simulador de direção me ajudou muito. Fiz as aulas de moto e passei de primeira no exame. Recomendo muito!"
+                            </p>
+                        </div>
+                        <!-- Author Meta -->
+                        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" 
+                                 alt="Foto de Lucas Pereira" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-brand-navy text-sm">Lucas Pereira</h4>
+                                <span class="inline-flex items-center text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full mt-1">
+                                    <i class="fa-solid fa-circle-check text-[10px] mr-1"></i> CNH em Mãos - Categoria AB
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Testimonial 3 -->
+                    <article class="bg-slate-50 border border-slate-100 rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition duration-300">
+                        <div class="space-y-4">
+                            <!-- Star Rating -->
+                            <div class="flex text-amber-400 space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <!-- Comment -->
+                            <p class="text-slate-600 text-sm leading-relaxed italic">
+                                "Fiz o processo da minha CNH na Autoescola Modelo e tive uma experiência incrível com facilidade de pagamento! Graças ao suporte e dedicação deles, hoje estou habilitado e empregado como motorista profissional. Só gratidão por essa equipe!"
+                            </p>
+                        </div>
+                        <!-- Author Meta -->
+                        <div class="flex items-center space-x-4 mt-6 pt-6 border-t border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&h=150&q=80" 
+                                 alt="Foto de Rodrigo Santos" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-brand-navy text-sm">Rodrigo Santos</h4>
+                                <span class="inline-flex items-center text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full mt-1">
+                                    <i class="fa-solid fa-circle-check text-[10px] mr-1"></i> CNH Profissional - Categoria D
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FAQ (PERGUNTAS FREQUENTES) -->
+        <section id="faq" class="py-24 bg-slate-50 border-t border-slate-100 scroll-mt-10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center space-y-4 mb-16">
+                    <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-blue-100/60 px-4 py-1.5 rounded-full">Dúvidas Frequentes</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+                        Tire Suas Dúvidas Sobre o Processo
+                    </h2>
+                    <p class="text-slate-600 text-base sm:text-lg">
+                        Muitos alunos chegam com as mesmas incertezas. Confira as respostas diretas para as principais perguntas.
+                    </p>
+                </div>
+
+                <!-- Accordion Wrapper -->
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-slate-200 bg-white rounded-2xl overflow-hidden transition shadow-sm hover:shadow-md">
+                        <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" aria-expanded="false">
+                            <span class="text-base sm:text-lg font-bold text-brand-navy">Qual é a idade mínima para iniciar o processo da CNH?</span>
+                            <span class="faq-icon-wrapper w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center text-slate-500 transition duration-300">
+                                <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-6 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-4">
+                                Você pode se matricular na autoescola a partir do momento em que completa 18 anos de idade. No Brasil, o código de trânsito exige que o candidato seja penalmente imputável (ou seja, possa responder judicialmente por seus atos), o que só ocorre aos 18 anos completos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-slate-200 bg-white rounded-2xl overflow-hidden transition shadow-sm hover:shadow-md">
+                        <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" aria-expanded="false">
+                            <span class="text-base sm:text-lg font-bold text-brand-navy">Quanto tempo demora, em média, para tirar a carteira de motorista?</span>
+                            <span class="faq-icon-wrapper w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center text-slate-500 transition duration-300">
+                                <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-6 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-4">
+                                Em média, o processo leva de <strong>3 a 5 meses</strong>. Esse tempo pode variar dependendo da sua disponibilidade para realizar as aulas obrigatórias de legislação (teóricas) e as aulas de direção (práticas), além do tempo de agendamento de provas pelo próprio DETRAN. Na Autoescola Modelo, otimizamos seu cronograma para que você conclua o mais rápido possível!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="border border-slate-200 bg-white rounded-2xl overflow-hidden transition shadow-sm hover:shadow-md">
+                        <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" aria-expanded="false">
+                            <span class="text-base sm:text-lg font-bold text-brand-navy">Quais são as formas de pagamento e facilidades disponíveis?</span>
+                            <span class="faq-icon-wrapper w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center text-slate-500 transition duration-300">
+                                <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-6 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-4">
+                                Queremos que você conquiste seu sonho sem apertar o bolso! Facilitamos o pagamento em:
+                                <ul class="list-disc pl-5 mt-2 space-y-1">
+                                    <li>Cartão de crédito em até 12x sem juros;</li>
+                                    <li>Boleto bancário facilitado e sem burocracia (sob análise);</li>
+                                    <li>Desconto especial de lançamento para pagamentos à vista via Pix ou dinheiro.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="border border-slate-200 bg-white rounded-2xl overflow-hidden transition shadow-sm hover:shadow-md">
+                        <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" aria-expanded="false">
+                            <span class="text-base sm:text-lg font-bold text-brand-navy">Como funcionam os exames médicos, teóricos e práticos?</span>
+                            <span class="faq-icon-wrapper w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center text-slate-500 transition duration-300">
+                                <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
+                            </span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <div class="px-6 pb-6 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-4">
+                                O processo possui as seguintes etapas sequenciais:
+                                <ol class="list-decimal pl-5 mt-2 space-y-1">
+                                    <li><strong>Exame Médico e Psicotécnico:</strong> Realizados em clínicas credenciadas para avaliar suas condições físicas e mentais.</li>
+                                    <li><strong>Curso Teórico e Prova do DETRAN:</strong> 45 horas-aula de conteúdo (feito de forma online na Modelo). Logo após, realiza-se uma prova escrita de múltipla escolha.</li>
+                                    <li><strong>Aulas Práticas:</strong> Mínimo de 20 horas-aula de direção veicular na rua (para cada categoria).</li>
+                                    <li><strong>Exame Prático de Direção:</strong> Prova realizada na pista homologada com avaliadores credenciados do DETRAN. Sendo aprovado, sua Permissão para Dirigir (PPD) é emitida!</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SEÇÃO CONTATO -->
+        <section id="contato" class="py-24 bg-white border-t border-slate-100 scroll-mt-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Left: Contact Details and Map -->
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <span class="text-brand-blue font-bold text-sm tracking-wider uppercase bg-blue-50 px-4 py-1.5 rounded-full">Fale Conosco</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-none">
+                                Estamos prontos para te atender!
+                            </h2>
+                            <p class="text-slate-600 text-base leading-relaxed">
+                                Tem alguma dúvida pontual ou prefere falar com um atendente humano agora? Sinta-se à vontade para visitar nossa unidade física ou mandar uma mensagem no nosso canal de atendimento rápido.
+                            </p>
+                        </div>
+
+                        <!-- Contact Card list -->
+                        <div class="space-y-6">
+                            <!-- Address -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-base">Nosso Endereço</h4>
+                                    <p class="text-slate-600 text-sm mt-1">Av. Paulista, 1000 - Bela Vista, São Paulo - SP, 01310-100</p>
+                                </div>
+                            </div>
+
+                            <!-- Phones -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-base">Telefones para Atendimento</h4>
+                                    <p class="text-slate-600 text-sm mt-1">(11) 3222-1111 / (11) 99999-9999 (Celular/WhatsApp)</p>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-base">E-mail Corporativo</h4>
+                                    <p class="text-slate-600 text-sm mt-1">contato@autoescolamodelo.com.br</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Embedded map placeholder -->
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 h-64 shadow-inner relative bg-slate-100">
+                            <!-- Real maps dynamic iframe is preferred, but stylized placeholder works extremely robustly and safely online -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                                <i class="fa-solid fa-map-location-dot text-4xl text-slate-400 mb-2"></i>
+                                <span class="font-bold text-slate-700 text-sm">Localização Central Próxima ao Metrô</span>
+                                <span class="text-slate-500 text-xs mt-1 px-4">Estacionamento gratuito para alunos no local durante as aulas teóricas/simulado.</span>
+                                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="mt-4 px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold shadow-md hover:bg-slate-800 transition">
+                                    Abrir no Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Quick Contact Form / Lead Generation -->
+                    <div class="bg-slate-50 border border-slate-100 p-8 sm:p-10 rounded-3xl space-y-6 shadow-sm">
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-extrabold text-brand-navy">Envie uma Mensagem Direta</h3>
+                            <p class="text-slate-500 text-sm">Se você deseja que nossa equipe ligue diretamente para o seu telefone, informe abaixo.</p>
+                        </div>
+
+                        <form id="contact-form" class="space-y-5">
+                            <div>
+                                <label for="contact-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Seu Nome *</label>
+                                <input type="text" id="contact-name" required placeholder="Seu nome" 
+                                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm transition bg-white shadow-sm">
+                            </div>
+                            <div>
+                                <label for="contact-phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Telefone/WhatsApp *</label>
+                                <input type="tel" id="contact-phone" required placeholder="(99) 99999-9999" 
+                                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm transition bg-white shadow-sm">
+                            </div>
+                            <div>
+                                <label for="contact-msg" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Sua Mensagem / Dúvida</label>
+                                <textarea id="contact-msg" rows="4" placeholder="Como podemos te ajudar?" 
+                                          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm transition bg-white shadow-sm resize-none"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full py-4 bg-brand-navy hover:bg-slate-800 text-white font-bold text-sm rounded-xl shadow-md transition duration-200 uppercase tracking-wider flex items-center justify-center space-x-2">
+                                <span>Enviar Mensagem</span>
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 8. FOOTER (RODAPÉ) -->
+    <footer class="bg-brand-navy text-slate-400 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-slate-800">
+                <!-- Branding column -->
+                <div class="space-y-4">
+                    <a href="#inicio" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-brand-accent/20 border border-brand-accent/30 rounded-lg flex items-center justify-center text-brand-accent">
+                            <i class="fa-solid fa-car text-sm"></i>
+                        </div>
+                        <span class="text-lg font-extrabold text-white tracking-tight">Autoescola <span class="text-brand-accent">Modelo</span></span>
+                    </a>
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        Formando condutores prudentes, seguros e conscientes para o trânsito da nossa cidade. Líder em aprovação e tecnologia pedagógica.
+                    </p>
+                    <!-- Social icons -->
+                    <div class="flex space-x-4 pt-2">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-brand-accent hover:text-brand-navy text-slate-300 flex items-center justify-center transition duration-200" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-brand-accent hover:text-brand-navy text-slate-300 flex items-center justify-center transition duration-200" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-base"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-brand-accent hover:text-brand-navy text-slate-300 flex items-center justify-center transition duration-200" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Acesso Rápido</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#inicio" class="hover:text-brand-accent transition duration-150">Voltar ao Topo</a></li>
+                        <li><a href="#servicos" class="hover:text-brand-accent transition duration-150">Nossos Serviços</a></li>
+                        <li><a href="#diferenciais" class="hover:text-brand-accent transition duration-150">Diferenciais</a></li>
+                        <li><a href="#depoimentos" class="hover:text-brand-accent transition duration-150">Avaliações de Alunos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Operating hours -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Horário de Funcionamento</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex justify-between">
+                            <span>Segunda a Sexta:</span>
+                            <span class="text-white">07:00 às 21:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sábado:</span>
+                            <span class="text-white">08:00 às 13:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Aulas Práticas:</span>
+                            <span class="text-emerald-400 font-semibold">Horários Flexíveis</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal / DETRAN Badge -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider">Credenciamento</h4>
+                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-800 space-y-2 text-xs">
+                        <span class="text-slate-300 font-bold block"><i class="fa-solid fa-circle-check text-brand-accent mr-1"></i> CFC Credenciado DETRAN/SP</span>
+                        <p class="leading-relaxed">Registrado legalmente sob o Código de CFC nº 4.582-1. Cumprimos todas as exigências das Resoluções do CONTRAN.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright and legal metadata -->
+            <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-xs space-y-4 md:space-y-0 text-slate-500">
+                <p>&copy; 2026 Autoescola Modelo Ltda. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <span>CNPJ: 12.345.678/0001-90</span>
+                    <a href="#" class="hover:underline hover:text-slate-400">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MAIN JAVASCRIPT BLOCK -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // === 1. MOBILE MENU TOGGLE ===
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            const toggleMobileMenu = () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                if (isOpen) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.className = 'fa-solid fa-bars text-2xl';
+                } else {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.className = 'fa-solid fa-xmark text-2xl';
+                }
+            };
+
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMobileMenu();
+            });
+
+            // Close mobile menu when clicking any link
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.className = 'fa-solid fa-bars text-2xl';
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.className = 'fa-solid fa-bars text-2xl';
+                }
+            });
+
+
+            // === 2. FAQ ACCORDION (SISTEMA DE ACORDEÃO) ===
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const iconWrapper = toggle.querySelector('.faq-icon-wrapper');
+                    const icon = iconWrapper.querySelector('i');
+                    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+                    // Close all other FAQ items first for standard accordion accordion behavior
+                    faqToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            otherToggle.setAttribute('aria-expanded', 'false');
+                            otherToggle.nextElementSibling.style.maxHeight = null;
+                            otherToggle.querySelector('.faq-icon-wrapper').classList.remove('bg-brand-accent', 'text-brand-navy');
+                            otherToggle.querySelector('.faq-icon-wrapper').classList.add('bg-slate-50', 'text-slate-500');
+                            otherToggle.querySelector('.faq-icon-wrapper i').className = 'fa-solid fa-plus text-sm transition-transform duration-300';
+                        }
+                    });
+
+                    // Toggle current FAQ item
+                    if (isExpanded) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        content.style.maxHeight = null;
+                        iconWrapper.classList.remove('bg-brand-accent', 'text-brand-navy');
+                        iconWrapper.classList.add('bg-slate-50', 'text-slate-500');
+                        icon.className = 'fa-solid fa-plus text-sm transition-transform duration-300';
+                    } else {
+                        toggle.setAttribute('aria-expanded', 'true');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        iconWrapper.classList.remove('bg-slate-50', 'text-slate-500');
+                        iconWrapper.classList.add('bg-brand-accent', 'text-brand-navy');
+                        icon.className = 'fa-solid fa-minus text-sm transition-transform duration-300';
+                    }
+                });
+            });
+
+
+            // === 3. INPUT PHONE NUMBER / WHATSAPP MASKS ===
+            const maskPhoneInput = (input) => {
+                if (!input) return;
+                input.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, ""); // Remove non-numbers
+                    
+                    if (value.length > 11) value = value.slice(0, 11); // Max digits 11
+
+                    // Auto format: (XX) XXXXX-XXXX
+                    if (value.length > 6) {
+                        e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+                    } else if (value.length > 2) {
+                        e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                    } else if (value.length > 0) {
+                        e.target.value = `(${value}`;
+                    } else {
+                        e.target.value = "";
+                    }
+                });
+            };
+
+            const contactPhoneInput = document.getElementById('contact-phone');
+            maskPhoneInput(contactPhoneInput);
+
+
+            // === 4. SUCCESS MODAL & SIMULATED SUBMISSION ===
+            const contactForm = document.getElementById('contact-form');
+
+            // Handle Contact Form Submit (Simple Alert Feedback)
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('contact-name').value;
+                    const phone = document.getElementById('contact-phone').value;
+                    const msg = document.getElementById('contact-msg').value;
+
+                    const message = `Olá! Enviei uma dúvida através do formulário de contato da Autoescola Modelo.\n\n` +
+                                    `👤 Nome: ${name}\n` +
+                                    `📱 WhatsApp: ${phone}\n` +
+                                    `✉️ Mensagem: ${msg || 'Sem observações'}`;
+                    
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappUrl = `https://wa.me/5511999999999?text=${encodedMessage}`;
+
+                    // Simple simulated feedback
+                    alert(`Obrigado pelo contato, ${name}! Estamos redirecionando você para o nosso WhatsApp de suporte com a sua mensagem para agilizar o atendimento.`);
+                    window.open(whatsappUrl, '_blank');
+                    contactForm.reset();
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
